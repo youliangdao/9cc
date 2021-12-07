@@ -1,3 +1,4 @@
+
 #include "chibicc.h"
 
 static int depth;
@@ -94,8 +95,11 @@ static void gen_expr(Node *node) {
 }
 
 static void gen_stmt(Node *node) {
-  switch (node->kind)
-  {
+  switch (node->kind) {
+  case ND_BLOCK:
+    for (Node *n = node->body; n; n = n->next)
+      gen_stmt(n);
+    return;
   case ND_RETURN:
     gen_expr(node->lhs);
     printf("  jmp .L.return\n");
@@ -104,6 +108,7 @@ static void gen_stmt(Node *node) {
     gen_expr(node->lhs);
     return;
   }
+
   error("invalid statement");
 }
 
@@ -128,10 +133,8 @@ void codegen(Function *prog) {
   printf("  mov %%rsp, %%rbp\n");
   printf("  sub $%d, %%rsp\n", prog->stack_size);
 
-  for (Node *n = prog->body; n; n = n->next) {
-    gen_stmt(n);
-    assert(depth == 0);
-  }
+  gen_stmt(prog->body);
+  assert(depth == 0);
 
   printf(".L.return:\n");
   printf("  mov %%rbp, %%rsp\n");

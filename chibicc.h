@@ -1,3 +1,4 @@
+
 #define _POSIX_C_SOURCE 200809L
 #include <assert.h>
 #include <ctype.h>
@@ -15,11 +16,11 @@ typedef struct Node Node;
 
 // Token
 typedef enum {
-  TK_IDENT, // Identifiers
-  TK_PUNCT, // Punctuators
+  TK_IDENT,   // Identifiers
+  TK_PUNCT,   // Punctuators
   TK_KEYWORD, // Keywords
-  TK_NUM,   // Numeric literals
-  TK_EOF,   // End-of-file markers
+  TK_NUM,     // Numeric literals
+  TK_EOF,     // End-of-file markers
 } TokenKind;
 
 // Token type
@@ -72,6 +73,7 @@ typedef enum {
   ND_LE,        // <=
   ND_ASSIGN,    // =
   ND_RETURN,    // "return"
+  ND_BLOCK,     // { ... }
   ND_EXPR_STMT, // Expression statement
   ND_VAR,       // Variable
   ND_NUM,       // Integer
@@ -83,6 +85,10 @@ struct Node {
   Node *next;    // Next node
   Node *lhs;     // Left-hand side
   Node *rhs;     // Right-hand side
+
+  // Block
+  Node *body;
+
   Obj *var;      // Used if kind == ND_VAR
   int val;       // Used if kind == ND_NUM
 };

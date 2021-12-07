@@ -1,3 +1,4 @@
+
 #include "chibicc.h"
 
 // Input string
@@ -79,16 +80,13 @@ static int read_punct(char *p) {
   return ispunct(*p) ? 1 : 0;
 }
 
-static void convert_keywords(Token *tok)
-{
+static void convert_keywords(Token *tok) {
   for (Token *t = tok; t->kind != TK_EOF; t = t->next)
-  {
     if (equal(t, "return"))
       t->kind = TK_KEYWORD;
-  }
 }
 
-// Tokenize `a given string and returns new tokens.
+// Tokenize a given string and returns new tokens.
 Token *tokenize(char *p) {
   current_input = p;
   Token head = {};
