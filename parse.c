@@ -1,4 +1,3 @@
-
 // This file contains a recursive descent parser for C.
 //
 // Most functions in this file are named after the symbols they are
@@ -419,7 +418,8 @@ static Node *unary(Token **rest, Token *tok) {
   return primary(rest, tok);
 }
 
-// primary = "(" expr ")" | ident | num
+// primary = "(" expr ")" | ident args? | num
+// args = "(" ")"
 static Node *primary(Token **rest, Token *tok) {
   if (equal(tok, "(")) {
     Node *node = expr(&tok, tok->next);
@@ -428,6 +428,15 @@ static Node *primary(Token **rest, Token *tok) {
   }
 
   if (tok->kind == TK_IDENT) {
+    // Function call
+    if (equal(tok->next, "(")) {
+      Node *node = new_node(ND_FUNCALL, tok);
+      node->funcname = strndup(tok->loc, tok->len);
+      *rest = skip(tok->next->next, ")");
+      return node;
+    }
+
+    // Variable
     Obj *var = find_var(tok);
     if (!var)
       error_tok(tok, "undefined variable");
