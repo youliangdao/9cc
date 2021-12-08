@@ -1,3 +1,4 @@
+
 #include "chibicc.h"
 
 static int depth;
@@ -110,6 +111,22 @@ static void gen_stmt(Node *node) {
     printf(".L.else.%d:\n", c);
     if (node->els)
       gen_stmt(node->els);
+    printf(".L.end.%d:\n", c);
+    return;
+  }
+  case ND_FOR: {
+    int c = count();
+    gen_stmt(node->init);
+    printf(".L.begin.%d:\n", c);
+    if (node->cond) {
+      gen_expr(node->cond);
+      printf("  cmp $0, %%rax\n");
+      printf("  je  .L.end.%d\n", c);
+    }
+    gen_stmt(node->then);
+    if (node->inc)
+      gen_expr(node->inc);
+    printf("  jmp .L.begin.%d\n", c);
     printf(".L.end.%d:\n", c);
     return;
   }
