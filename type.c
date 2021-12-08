@@ -1,4 +1,3 @@
-
 #include "chibicc.h"
 
 Type *ty_int = &(Type){TY_INT};

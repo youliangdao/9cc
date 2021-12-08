@@ -35,6 +35,7 @@ static Node *mul(Token **rest, Token *tok);
 static Node *unary(Token **rest, Token *tok);
 static Node *primary(Token **rest, Token *tok);
 
+
 // Find a local variable by name.
 static Obj *find_var(Token *tok) {
   for (Obj *var = locals; var; var = var->next)

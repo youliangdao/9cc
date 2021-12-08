@@ -74,7 +74,7 @@ static void gen_expr(Node *node) {
     printf("  call %s\n", node->funcname);
     return;
   }
-
+  
   gen_expr(node->rhs);
   push();
   gen_expr(node->lhs);
