@@ -1,3 +1,4 @@
+
 #include "chibicc.h"
 
 // Input string
