@@ -1,3 +1,4 @@
+
 #define _POSIX_C_SOURCE 200809L
 #include <assert.h>
 #include <ctype.h>
@@ -19,6 +20,7 @@ typedef enum {
   TK_IDENT,   // Identifiers
   TK_PUNCT,   // Punctuators
   TK_KEYWORD, // Keywords
+  TK_STR,     // String literals
   TK_NUM,     // Numeric literals
   TK_EOF,     // End-of-file markers
 } TokenKind;
@@ -31,6 +33,8 @@ struct Token {
   int val;        // If kind is TK_NUM, its value
   char *loc;      // Token location
   int len;        // Token length
+  Type *ty;       // Used if TK_STR
+  char *str;      // String literal contents including terminating '\0'
 };
 
 void error(char *fmt, ...);
@@ -58,6 +62,9 @@ struct Obj {
 
   // Global variable or function
   bool is_function;
+
+  // Global variable
+  char *init_data;
 
   // Function
   Obj *params;
