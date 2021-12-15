@@ -1,4 +1,3 @@
-
 #include "chibicc.h"
 
 Type *ty_char = &(Type){TY_CHAR, 1};
