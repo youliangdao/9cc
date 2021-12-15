@@ -1,3 +1,4 @@
+
 #!/bin/bash
 cat <<EOF | gcc -xc -c -o tmp2.o -
 int ret3() { return 3; }
@@ -211,5 +212,9 @@ assert 2 'int main() { return ({ 0; 1; 2; }); }'
 assert 1 'int main() { ({ 0; return 1; 2; }); return 3; }'
 assert 6 'int main() { return ({ 1; }) + ({ 2; }) + ({ 3; }); }'
 assert 3 'int main() { return ({ int x=3; x; }); }'
+
+assert 2 'int main() { /* return 1; */ return 2; }'
+assert 2 'int main() { // return 1;
+return 2; }'
 
 echo OK
