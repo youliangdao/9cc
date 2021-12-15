@@ -1,4 +1,3 @@
-
 #include "chibicc.h"
 
 // Input filename
