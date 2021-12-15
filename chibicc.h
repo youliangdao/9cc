@@ -1,3 +1,4 @@
+
 #define _POSIX_C_SOURCE 200809L
 #include <assert.h>
 #include <ctype.h>
@@ -41,6 +42,8 @@ struct Token {
   int len;        // Token length
   Type *ty;       // Used if TK_STR
   char *str;      // String literal contents including terminating '\0'
+
+  int line_no;    // Line number
 };
 
 void error(char *fmt, ...);
