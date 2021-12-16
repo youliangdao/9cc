@@ -2,7 +2,8 @@ int main()
 {
     struct 
     {
-        int a, b;
+        char a;
+        int b;
     } x;
     return sizeof(x);
 }
