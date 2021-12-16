@@ -1,9 +1,9 @@
 int main()
 {
-    struct 
-    {
-        char a;
-        int b;
-    } x;
-    return sizeof(x);
+    int x;
+    int y;
+    char z;
+    char *a = &y;
+    char *b = &z;
+    return b - a;
 }
