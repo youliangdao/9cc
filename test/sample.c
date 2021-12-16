@@ -1,9 +1,18 @@
 int main()
 {
-    int x;
-    int y;
-    char z;
-    char *a = &y;
-    char *b = &z;
-    return b - a;
+    struct t
+    {
+        char a[2];
+    } ;
+
+    {
+        struct t
+        {
+            char a[4];
+        };
+        
+    };
+    
+    struct t y;
+    return sizeof(y);
 }
