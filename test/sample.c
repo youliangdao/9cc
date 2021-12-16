@@ -1,11 +1,11 @@
 int main()
 {
-    struct t
+    union 
     {
-        char a;
+        int a;
+        char b[4];
     } x;
     
-    struct t *y = &x;
-    x.a = 3;
-    return y->a;
+    x.a = 515;
+    return x.b[0];
 }

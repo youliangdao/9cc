@@ -1,3 +1,4 @@
+
 #define _POSIX_C_SOURCE 200809L
 #include <assert.h>
 #include <ctype.h>
@@ -153,6 +154,7 @@ typedef enum {
   TY_FUNC,
   TY_ARRAY,
   TY_STRUCT,
+  TY_UNION,
 } TypeKind;
 
 struct Type {
