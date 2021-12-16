@@ -2,17 +2,10 @@ int main()
 {
     struct t
     {
-        char a[2];
-    } ;
-
-    {
-        struct t
-        {
-            char a[4];
-        };
-        
-    };
+        char a;
+    } x;
     
-    struct t y;
-    return sizeof(y);
+    struct t *y = &x;
+    x.a = 3;
+    return y->a;
 }
