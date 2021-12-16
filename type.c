@@ -1,3 +1,4 @@
+
 #include "chibicc.h"
 
 Type *ty_char = &(Type){TY_CHAR, 1};
@@ -80,6 +81,9 @@ void add_type(Node *node) {
     return;
   case ND_COMMA:
     node->ty = node->rhs->ty;
+    return;
+  case ND_MEMBER:
+    node->ty = node->member->ty;
     return;
   case ND_ADDR:
     if (node->lhs->ty->kind == TY_ARRAY)

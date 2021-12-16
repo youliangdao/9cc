@@ -1,5 +1,8 @@
 int main()
 {
-    int i=2, j = 3;
-    return i;
+    struct 
+    {
+        int a, b;
+    } x;
+    return sizeof(x);
 }

@@ -1,3 +1,4 @@
+
 #include "chibicc.h"
 
 // Input filename
@@ -124,6 +125,7 @@ static int read_punct(char *p) {
 static bool is_keyword(Token *tok) {
   static char *kw[] = {
     "return", "if", "else", "for", "while", "int", "sizeof", "char",
+    "struct",
   };
 
   for (int i = 0; i < sizeof(kw) / sizeof(*kw); i++)
