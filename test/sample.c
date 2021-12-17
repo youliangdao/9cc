@@ -1,9 +1,6 @@
 int main()
 {
-    return sizeof(
-        struct {
-            int a; 
-            int b;
-        }
-    );
+    int x = 5;
+    long y = (long)&x;
+    return *(int*)y;
 }
