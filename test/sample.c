@@ -1,11 +1,13 @@
 int main()
 {
-    union 
+    struct t
     {
-        int a;
-        char b[4];
-    } x;
-    
-    x.a = 515;
-    return x.b[0];
+        int a, b;
+    };
+    struct t x;
+    x.a = 7;
+    struct t y;
+    struct t *z = &y;
+    *z = x;
+    return y.a;
 }
