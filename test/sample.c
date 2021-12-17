@@ -1,13 +1,9 @@
+int sub_long(long a, long b, long c)
+{
+    return a - b - c;
+}
+
 int main()
 {
-    struct t
-    {
-        int a, b;
-    };
-    struct t x;
-    x.a = 7;
-    struct t y;
-    struct t *z = &y;
-    *z = x;
-    return y.a;
+    return sub_long(7, 3, 3);
 }
