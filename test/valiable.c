@@ -1,3 +1,4 @@
+
 #include "test.h"
 
 int g1, g2[4];
@@ -51,6 +52,7 @@ int main() {
   ASSERT(1, ({ int x; char y; int z; char *a=&y; char *b=&z; b-a; }));
 
   ASSERT(8, ({ long x; sizeof(x); }));
+  ASSERT(2, ({ short x; sizeof(x); }));
 
   printf("OK\n");
   return 0;
