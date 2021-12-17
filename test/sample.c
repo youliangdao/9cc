@@ -1,5 +1,6 @@
 int main()
 {
-    short int x;
+    typedef int MyInt2[4];
+    MyInt2 x;
     return sizeof(x);
 }
