@@ -1,4 +1,5 @@
 int main()
 {
-    void *x;
+    short int x;
+    return sizeof(x);
 }
