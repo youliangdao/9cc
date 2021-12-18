@@ -1,4 +1,3 @@
-
 #include "chibicc.h"
 
 static FILE *output_file;
@@ -210,6 +209,12 @@ static void gen_expr(Node *node) {
   case ND_CAST:
     gen_expr(node->lhs);
     cast(node->lhs->ty, node->ty);
+    return;
+  case ND_NOT:
+    gen_expr(node->lhs);
+    println("  cmp $0, %%rax");
+    println("  sete %%al");
+    println("  movzx %%al, %%rax");
     return;
   case ND_FUNCALL: {
     int nargs = 0;
