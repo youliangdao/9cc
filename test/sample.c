@@ -1,12 +1,9 @@
-int g1;
-
-int *g1_ptr()
+int div_long(long a, long b)
 {
-    return &g1;
+    return a / b;
 }
 
 int main()
 {
-    g1 = 3;
-    return *g1_ptr();
+    return div_long(-10, 2);
 }
