@@ -1,4 +1,12 @@
+int g1;
+
+int *g1_ptr()
+{
+    return &g1;
+}
+
 int main()
 {
-    return (-10 + (long)5);
+    g1 = 3;
+    return *g1_ptr();
 }

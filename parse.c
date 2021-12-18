@@ -1,3 +1,4 @@
+
 // This file contains a recursive descent parser for C.
 //
 // Most functions in this file are named after the symbols they are
@@ -59,6 +60,9 @@ static Obj *locals;
 static Obj *globals;
 
 static Scope *scope = &(Scope){};
+
+// Points to the function object the parser is currently parsing.
+static Obj *current_fn;
 
 static bool is_typename(Token *tok);
 static Type *declspec(Token **rest, Token *tok, VarAttr *attr);
@@ -476,8 +480,11 @@ static bool is_typename(Token *tok) {
 static Node *stmt(Token **rest, Token *tok) {
   if (equal(tok, "return")) {
     Node *node = new_node(ND_RETURN, tok);
-    node->lhs = expr(&tok, tok->next);
+    Node *exp = expr(&tok, tok->next);
     *rest = skip(tok, ";");
+
+    add_type(exp);
+    node->lhs = new_cast(exp, current_fn->ty->return_ty);
     return node;
   }
 
@@ -925,6 +932,13 @@ static Node *funcall(Token **rest, Token *tok) {
   Token *start = tok;
   tok = tok->next->next;
 
+  VarScope *sc = find_var(start);
+  if (!sc)
+    error_tok(start, "implicit declaration of a function");
+  if (!sc->var || sc->var->ty->kind != TY_FUNC)
+    error_tok(start, "not a function");
+
+  Type *ty = sc->var->ty->return_ty;
   Node head = {};
   Node *cur = &head;
 
@@ -932,12 +946,14 @@ static Node *funcall(Token **rest, Token *tok) {
     if (cur != &head)
       tok = skip(tok, ",");
     cur = cur->next = assign(&tok, tok);
+    add_type(cur);
   }
 
   *rest = skip(tok, ")");
 
   Node *node = new_node(ND_FUNCALL, start);
   node->funcname = strndup(start->loc, start->len);
+  node->ty = ty;
   node->args = head.next;
   return node;
 }
@@ -1037,6 +1053,7 @@ static Token *function(Token *tok, Type *basety) {
   if (!fn->is_definition)
     return tok;
 
+  current_fn = fn;
   locals = NULL;
   enter_scope();
   create_param_lvars(ty->params);
