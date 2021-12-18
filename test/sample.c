@@ -1,6 +1,4 @@
 int main()
 {
-    int x = 5;
-    long y = (long)&x;
-    return *(int*)y;
+    return (-10 + (long)5);
 }
