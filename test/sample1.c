@@ -1,4 +1,6 @@
 int main()
 {
-    sizeof(!(char)0);
+    int i = 10;
+    i %= 4;
+    return i;
 }

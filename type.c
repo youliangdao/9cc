@@ -1,3 +1,4 @@
+
 #include "chibicc.h"
 
 Type *ty_void = &(Type){TY_VOID, 1, 1};
@@ -98,6 +99,7 @@ void add_type(Node *node) {
   case ND_SUB:
   case ND_MUL:
   case ND_DIV:
+  case ND_MOD:
     usual_arith_conv(&node->lhs, &node->rhs);
     node->ty = node->lhs->ty;
     return;
