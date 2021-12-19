@@ -1,4 +1,3 @@
-
 #define _POSIX_C_SOURCE 200809L
 #include <assert.h>
 #include <ctype.h>
@@ -112,6 +111,8 @@ typedef enum {
   ND_DEREF,     // unary *
   ND_NOT,       // !
   ND_BITNOT,    // ~
+  ND_LOGAND,    // &&
+  ND_LOGOR,     // ||
   ND_RETURN,    // "return"
   ND_IF,        // "if"
   ND_FOR,       // "for" or "while"

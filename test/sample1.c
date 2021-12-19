@@ -1,6 +1,4 @@
 int main()
 {
-    int i = 10;
-    i %= 4;
-    return i;
+    return 1 && 5;
 }
