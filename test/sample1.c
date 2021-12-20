@@ -1,6 +1,12 @@
 int main()
 {
-    struct T *foo;
-    struct T {int x;};
-    return sizeof(struct T);
+    int i = 0;
+    goto a;
+a: 
+    i++;
+b: 
+    i++;
+c: 
+    i++;
+    return i;
 }
