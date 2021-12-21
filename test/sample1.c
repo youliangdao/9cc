@@ -1,8 +1,9 @@
 int main()
 {
-    typedef int foo;
-    goto foo;
-    
-foo:;
-    return 1;
+    int i = 0;
+    for (; i < 10; i++)
+    {
+        if (i == 3) break;
+    }
+    return i;
 }
