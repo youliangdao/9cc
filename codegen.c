@@ -1,3 +1,4 @@
+
 #include "chibicc.h"
 
 static FILE *output_file;
@@ -362,6 +363,7 @@ static void gen_stmt(Node *node) {
       println("  je %s", node->brk_label);
     }
     gen_stmt(node->then);
+    println("%s:", node->cont_label);
     if (node->inc)
       gen_expr(node->inc);
     println("  jmp .L.begin.%d", c);

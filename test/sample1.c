@@ -1,9 +1,11 @@
 int main()
 {
     int i = 0;
-    for (; i < 10; i++)
+    int j = 0;
+    while (i++<10)
     {
-        if (i == 3) break;
+        if (i > 5) continue;
+        j++;
     }
-    return i;
+    return j;
 }
