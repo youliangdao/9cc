@@ -1,11 +1,17 @@
 int main()
 {
     int i = 0;
-    int j = 0;
-    while (i++<10)
+    switch (0)
     {
-        if (i > 5) continue;
-        j++;
+    case 0:
+        i = 5;    
+        break;
+    case 1:
+        i = 6;
+        break;
+    case 2:
+        i = 7;
+        break;
     }
-    return j;
+    return i;
 }
