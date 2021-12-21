@@ -1,4 +1,3 @@
-
 #define _POSIX_C_SOURCE 200809L
 #include <assert.h>
 #include <ctype.h>
@@ -101,6 +100,8 @@ typedef enum {
   ND_BITAND,    // &
   ND_BITOR,     // |
   ND_BITXOR,    // ^
+  ND_SHL,       // <<
+  ND_SHR,       // >>
   ND_EQ,        // ==
   ND_NE,        // !=
   ND_LT,        // <
