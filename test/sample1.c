@@ -1,5 +1,5 @@
 int main()
 {
-    int x[3] = {1, 2, 3};
+    int x[3] = {};
     return x[0];
 }
